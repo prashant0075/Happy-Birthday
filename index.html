@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Little Question for You 💌</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+      color: #60253e;
+      background: linear-gradient(135deg, #ff9aaf, #ff668d, #fa426b);
+      background-size: 200% 200%;
+      animation: backgroundMove 9s ease infinite;
+    }
+
+    .background-hearts {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .heart {
+      position: absolute;
+      bottom: -60px;
+      color: rgba(255, 255, 255, 0.75);
+      animation: floatUp linear infinite;
+    }
+
+    .card {
+      position: relative;
+      z-index: 1;
+      width: min(100%, 560px);
+      padding: 45px 25px;
+      border: 1px solid rgba(255, 255, 255, 0.55);
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.25);
+      box-shadow: 0 20px 60px rgba(120, 20, 60, 0.2);
+      backdrop-filter: blur(18px);
+      text-align: center;
+    }
+
+    .tag {
+      display: inline-block;
+      margin-bottom: 18px;
+      padding: 9px 15px;
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.35);
+      font-size: 13px;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    h1 {
+      margin: 0 0 15px;
+      color: #702442;
+      font-size: clamp(2rem, 8vw, 3.4rem);
+      line-height: 1.15;
+    }
+
+    .message {
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+
+    .buttons {
+      display: flex;
+      min-height: 65px;
+      justify-content: center;
+      align-items: center;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    button {
+      min-width: 125px;
+      padding: 15px 22px;
+      border: 0;
+      border-radius: 40px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    #yesButton {
+      color: white;
+      background: linear-gradient(135deg, #ff3d70, #e91d59);
+      box-shadow: 0 9px 24px rgba(192, 22, 75, 0.3);
+    }
+
+    #yesButton:hover {
+      transform: translateY(-3px) scale(1.04);
+    }
+
+    #noButton {
+      color: #84354f;
+      background: rgba(255, 255, 255, 0.8);
+      box-shadow: 0 8px 20px rgba(119, 23, 65, 0.15);
+    }
+
+    .hint {
+      margin-top: 20px;
+      font-size: 0.9rem;
+    }
+
+    .celebration {
+      position: fixed;
+      inset: 0;
+      z-index: 5;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      overflow: hidden;
+      color: white;
+      text-align: center;
+      background: linear-gradient(135deg, #ff4c7c, #e72557, #ff7e8d);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.4s, visibility 0.4s;
+    }
+
+    .celebration.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .celebration-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .big-heart {
+      display: block;
+      font-size: clamp(5rem, 20vw, 9rem);
+      animation: heartbeat 1s infinite;
+    }
+
+    .celebration h2 {
+      margin: 10px 0;
+      font-size: clamp(3rem, 12vw, 6rem);
+    }
+
+    .celebration p {
+      font-size: 1.15rem;
+      line-height: 1.6;
+    }
+
+    #wishButton {
+      margin-top: 18px;
+      color: #b32155;
+      background: white;
+      box-shadow: 0 10px 25px rgba(100, 0, 40, 0.2);
+    }
+
+    #wishButton:hover {
+      transform: translateY(-3px);
+    }
+
+    .falling-heart {
+      position: absolute;
+      top: -50px;
+      color: white;
+      pointer-events: none;
+      animation: fall linear forwards;
+    }
+
+    @keyframes backgroundMove {
+      0%, 100% { background-position: 0 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    @keyframes floatUp {
+      to {
+        transform: translateY(-115vh) rotate(30deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes heartbeat {
+      50% { transform: scale(1.12); }
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0.2;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .card {
+        padding: 38px 18px;
+      }
+
+      .buttons {
+        gap: 10px;
+      }
+
+      button {
+        min-width: 112px;
+        padding: 14px 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="background-hearts" id="backgroundHearts"></div>
+
+  <main class="card">
+    <div class="tag">✦ A TINY QUESTION ✦</div>
+
+    <h1>❤️ Will You Foregive Me For My Mistake Pleaseee!!! ❤️</h1>
+
+    <p class="message">
+      Every great love story starts with a little courage…
+      and a lot of dedication. 💌
+    </p>
+
+    <div class="buttons">
+      <button id="yesButton" type="button">YES 💖</button>
+      <button id="noButton" type="button">NO 🙈</button>
+    </div>
+
+    <p class="hint">Psst… one of these buttons is a little shy ✨</p>
+  </main>
+
+  <section class="celebration" id="celebration">
+    <div class="celebration-content">
+      <span class="big-heart">💖</span>
+      <h2>YAY!!</h2>
+      <p>
+        You just made me the happiest person ever!<br>
+        This is the beginning of something beautiful. 💕
+      </p>
+      <button id="wishButton" type="button">Aww, I love you! 💗</button>
+    </div>
+  </section>
+
+  <script>
+    const backgroundHearts = document.getElementById("backgroundHearts");
+    const noButton = document.getElementById("noButton");
+    const celebration = document.getElementById("celebration");
+    const heartTypes = ["♥", "♡", "❤", "💕"];
+
+    // Background mein floating hearts
+    for (let i = 0; i < 20; i++) {
+      const heart = document.createElement("span");
+      heart.className = "heart";
+      heart.textContent =
+        heartTypes[Math.floor(Math.random() * heartTypes.length)];
+      heart.style.left = Math.random() * 100 + "%";
+      heart.style.fontSize = 16 + Math.random() * 25 + "px";
+      heart.style.animationDuration = 8 + Math.random() * 12 + "s";
+      heart.style.animationDelay = -Math.random() * 15 + "s";
+      backgroundHearts.appendChild(heart);
+    }
+
+    // NO button tap ya click karne par apni jagah se bhaagega
+    function moveNoButton(event) {
+      if (event) event.preventDefault();
+
+      const padding = 16;
+      const maxX = Math.max(
+        padding,
+        window.innerWidth - noButton.offsetWidth - padding
+      );
+      const maxY = Math.max(
+        padding,
+        window.innerHeight - noButton.offsetHeight - padding
+      );
+
+      noButton.style.position = "fixed";
+      noButton.style.left =
+        padding + Math.random() * (maxX - padding) + "px";
+      noButton.style.top =
+        padding + Math.random() * (maxY - padding) + "px";
+    }
+
+    noButton.addEventListener("pointerdown", moveNoButton);
+    noButton.addEventListener("pointerenter", moveNoButton);
+
+    // YES click karne par celebration aur falling hearts
+    document.getElementById("yesButton").addEventListener("click", () => {
+      celebration.classList.add("show");
+
+      const rainTimer = setInterval(() => {
+        const heart = document.createElement("span");
+        heart.className = "falling-heart";
+        heart.textContent =
+          heartTypes[Math.floor(Math.random() * heartTypes.length)];
+        heart.style.left = Math.random() * 100 + "%";
+        heart.style.fontSize = 20 + Math.random() * 35 + "px";
+        heart.style.animationDuration = 3 + Math.random() * 3 + "s";
+
+        celebration.appendChild(heart);
+        setTimeout(() => heart.remove(), 6500);
+      }, 150);
+
+      // Is button se tumhari alag wish.html file khulegi
+      document.getElementById("wishButton").addEventListener("click", () => {
+        clearInterval(rainTimer);
+        window.location.href = "wish.html";
+      }, { once: true });
+    });
+  </script>
+</body>
+</html>
